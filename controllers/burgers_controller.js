@@ -19,7 +19,7 @@ router.put('api/burgers/:id', function(req, res) {
     if (newBurger.changedRows === 0) {
       return res.status(404).end();
     } else {
-      res.json(burgers)
+      res.json(burgers);
     }
   });
 });
