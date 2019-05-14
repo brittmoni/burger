@@ -4,7 +4,10 @@ var burger = require('../models/burger');
 
 router.get('/', function(req, res) {
   burger.selectAll(function(data) {
-    res.render('index', {burgers: data});
+    res.render('index', {
+      num: burger.id,
+      type: burger.burger_name
+    });
   });
 });
 
