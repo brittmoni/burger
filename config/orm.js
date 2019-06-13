@@ -1,30 +1,35 @@
 var connection = require ('./connection');
 
 var orm = {
-  selectAll: function(tName, view) {
+  selectAll: function(tName, cb) {
     connection.query('SELECT * FROM ' + tName, function(err, result) {
       if (err) throw err;
-      view(result);
+      cb(result);
     });
   },
-  insertOne: function(tName, colName, val, view) {
+  insertOne: function(tName, val, cb) {
     var query = 'INSERT INTO ' + tName;
-    query += ' (';
-    query += colName.toString();
-    query += ')';
-    query += ' VALUES (';
+    query += ' (burger_name)';
+    // query += colName.toString();
+    // query += ')';
+    query += ' VALUES ("';
     query += val;
-    query += ');';
+    query += '");';
 
     connection.query(query, function(err, result) {
       if (err) throw err;
-      view(result);
+      cb(result);
     });
   },
-  updateOne: function(cond, view) {
-    connection.query(`UPDATE burgers SET devoured=true WHERE id=${cond};`, function(err,result) {
+  updateOne: function(tName, cond, cb) {
+    var query = 'UPDATE ' + tName;
+    query += 'SET devoured=true';
+    query += 'WHERE id= ';
+    query += cond;
+
+    connection.query(query, function(err,result) {
       if (err) throw err
-      view(result);
+      cb(result);
     });
   }
 };
