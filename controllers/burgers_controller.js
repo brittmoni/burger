@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/api/burgers', function(req, res) {
-  burgers.insertOne(req.body.burger_name, function(data) {
+  burgers.insertOne(req.body.burger, function(data) {
     console.log(data);
     // res.json(burgers);
     res.redirect('/');

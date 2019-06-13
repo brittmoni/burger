@@ -6,7 +6,7 @@ $(function() {
       burger_name: $('#new-burger').val().trim(),
       devoured: false
     };
-    
+      
     $.ajax('/api/burgers', {
       type: 'POST',
       data: newBurger
@@ -18,3 +18,4 @@ $(function() {
     );
   });
 });
+
